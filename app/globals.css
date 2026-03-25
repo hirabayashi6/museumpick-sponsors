@@ -1,26 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700;900&family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --navy: #0D1B35;
+  --navy-mid: #162040;
+  --navy-light: #1E2D56;
+  --cream: #F5F0E6;
+  --cream-dark: #E8E0D0;
+  --gold: #C9963A;
+  --gold-light: #E4B96A;
+  --gold-bright: #F5D080;
+  --gold-dim: #8A6420;
+  --text-primary: #F5F0E6;
+  --text-secondary: #B8B0A0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--navy);
+  color: var(--cream);
+  font-family: 'Noto Sans JP', sans-serif;
+  overflow-x: hidden;
+}
+
+@keyframes goldShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 20px 0 rgba(201, 150, 58, 0.1); }
+  50% { box-shadow: 0 0 40px 15px rgba(201, 150, 58, 0.25); }
+}
+@keyframes lineExpand {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marqueeScrollReverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #8A6420 0%, #F5D080 30%, #C9963A 50%, #F5D080 70%, #8A6420 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 4s linear infinite;
+}
+
+.section-title {
+  font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+  letter-spacing: 0.15em;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sponsor-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sponsor-card:hover {
+  transform: translateY(-4px);
+}
+
+.premium-glow {
+  animation: pulse-gold 3s ease-in-out infinite;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(201, 150, 58, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 150, 58, 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+/* レイアウト修正 */
+main {
+  width: 100%;
+}
+
+.max-w-4xl {
+  max-width: 56rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.max-w-5xl {
+  max-width: 64rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.max-w-6xl {
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.max-w-2xl {
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
